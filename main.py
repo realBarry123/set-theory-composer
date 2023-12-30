@@ -18,7 +18,7 @@ def write_wav(_sig, _name):
     wavfile.write(str(_name + ".wav"), FS, _sig)
 
 
-def compose_variations(_set):
+def compose_variations(_set, _mvt_name):
     """
     Composes a movement based on the provided frequency set and writes as 3 wav files
     :param _set: the frequency set used in the composition
@@ -43,7 +43,7 @@ def compose_variations(_set):
         else:
             voices[i] = np.array(voices[i])
         print(type(voices[i]))
-        write_wav(voices[i], "voice-" + str(i))
+        write_wav(voices[i], _mvt_name + "-voice-" + str(i))
 
 
-compose_variations([400, 500, 650, 700])
+compose_variations([400, 500, 650, 700], "test")
