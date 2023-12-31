@@ -25,6 +25,19 @@ def transpose(_set, _multiplier):
         new_set[i] *= _multiplier
     return new_set
 
+def transpose_to(_set, _freq):
+    """
+    Transposes a list of frequencies
+    :param _set: a list of frequencies
+    :param _freq: target frequency for the first note
+    :return: the transposed list
+    """
+    multiplier = _freq/_set[0]
+    new_set = _set.copy()
+    for i in range(len(new_set)):
+        new_set[i] *= multiplier
+    return new_set
+
 
 def invert(_set):
     """

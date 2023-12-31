@@ -25,25 +25,28 @@ def compose_variations(_set, _mvt_name):
     """
     voices = [[], [], []]
     for freq in _set:
-        voices[0].append(Note(freq, 1, "sin", 0.5))
+        voices[0].append(Note(freq, freq/500, "sin", 0.5))
 
-    for freq in invert(_set):
-        voices[1].append(Note(freq, 1, "sin", 0.5))
+    for i in range(len(_set)):
+        for freq in transpose_to(invert(_set), _set[i]):
+            voices[1].append(Note(freq, freq/500, "sin", 0.5))
 
     for freq in transpose(_set, 2):
-        voices[2].append(Note(freq, 1, "sin", 0.5))
+        voices[2].append(Note(freq, freq/500, "sin", 0.3))
 
-    # create signals and concat
-    for i in range(len(voices)):
-        for j in range(len(voices[i])):
-            voices[i][j] = voices[i][j].create_signal()
+    produce(voices, _mvt_name)
 
-        if voices[i]:
-            voices[i] = np.concatenate(voices[i])
+
+def produce(_voices, _mvt_name):
+    for i in range(len(_voices)):
+        for j in range(len(_voices[i])):
+            _voices[i][j] = _voices[i][j].create_signal()
+
+        if _voices[i]:
+            _voices[i] = np.concatenate(_voices[i])
         else:
-            voices[i] = np.array(voices[i])
-        print(type(voices[i]))
-        write_wav(voices[i], _mvt_name + "-voice-" + str(i))
-
+            _voices[i] = np.array(_voices[i])
+        print(type(_voices[i]))
+        write_wav(_voices[i], _mvt_name + "-voice-" + str(i))
 
 compose_variations([400, 500, 650, 700], "test")
