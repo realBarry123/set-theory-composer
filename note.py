@@ -43,3 +43,9 @@ class Note:
         sig = np.int16(sig)
 
         return sig
+
+
+class Rest(Note):
+
+    def __init__(self, _dur):
+        super().__init__(0, _dur, "sin", 0)
