@@ -1,5 +1,10 @@
+"""
+Barry Yu
+Dec 30, 2023
+Python Music
+"""
+
 import numpy as np
-import scipy
 from scipy.io import wavfile
 
 from note import Note, Rest
@@ -22,6 +27,7 @@ def compose_variations(_set, _mvt_name):
     """
     Composes a movement based on the provided frequency set and writes as 3 wav files
     :param _set: the frequency set used in the composition
+    :param _mvt_name: the name of the movement
     """
     voices = [[], [], []]
 

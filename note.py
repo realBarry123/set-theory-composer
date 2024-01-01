@@ -1,7 +1,9 @@
+"""
+Contains class Note and subclass Rest
+"""
 
 import numpy as np
 import scipy
-from scipy.io import wavfile
 
 # sample rate
 FS = 44100
@@ -9,7 +11,9 @@ PI = np.pi
 
 
 class Note:
-
+    """
+    An object representing a note with a frequency, duration, wave type, and amplitude
+    """
     def __init__(self, _freq, _dur, _type, _amp):
         self.freq = _freq
         self.dur = _dur
@@ -46,6 +50,8 @@ class Note:
 
 
 class Rest(Note):
-
+    """
+    An object representing a rest of a given duration
+    """
     def __init__(self, _dur):
         super().__init__(0, _dur, "sin", 0)
